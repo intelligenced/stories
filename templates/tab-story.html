@@ -1,0 +1,35 @@
+<ion-view view-title="Story">
+  <ion-content>
+
+   <div class="list">
+   <center>
+   <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRHIUtJGBJ9xc0DUmGyAqrEI91QgsXAz3FTvne5QOtFhg8mRwys">
+   </center>
+ <li class="item item-text-wrap">
+      {{story}}
+    </li>
+
+
+
+ <form name="messageform" ng-submit="submit()">
+   <label class="item item-radio" ng-repeat="leg in legs">
+    <input type="radio" name="test" value="{{leg.choice_code}}" ng-model="$parent.$parent.data.choice_code" ng-click="submit()">
+    <div class="item-content">
+{{leg.choice_text}}   </div>
+    <i class="radio-icon ion-checkmark"></i>
+
+  </label>
+       
+
+
+  </form>
+
+
+      
+
+
+
+
+  </ion-content>
+</ion-view>
+
