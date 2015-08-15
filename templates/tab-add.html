@@ -1,0 +1,96 @@
+<ion-view view-title="Add">
+  <ion-content>
+  <div class="button-bar">
+  <a class="button" ng-click="showEditor()">Edit</a>
+  <a class="button" ng-click="showSelect()">Select</a>
+  <a class="button" ng-click="showPublisher()">Add</a>
+</div>
+
+   <div class="list">
+   <div ng-show=Editor> LET THERE BE BANANAS </div>
+
+
+
+ <form >
+
+
+       <div class="card" ng-show=showSelectEnabled>
+        <label class="item item-input item-select">
+    <div class="input-label">
+      Under Choice
+    </div>
+      <select ng-model="choices.selected" ng-options="choice.choice_text for choice in choices.all" ng-change=submit()>
+        <option value="" ng-if="false"></option></select>
+
+  </label>
+  <div class="item item-text-wrap" >
+    {{story}}
+  </div>
+</div>
+
+    <!--editor begin -->
+
+   <div class="item item-divider" ng-show=showEditorEnabled>
+    Edit Choice
+  </div>
+
+  <label class="item item-input" ng-show=showEditorEnabled>
+    <textarea  ng-model="choices.selected.choice_text" value="banana" placeholder="Choice"></textarea>
+  </label>
+
+     <div class="item item-divider" ng-show=showEditorEnabled>
+    Edit Story
+  </div>
+
+
+   <label class="item item-input" ng-show=showEditorEnabled>
+    <textarea rows="20" ng-model="story" placeholder="Story"></textarea>
+  </label>
+
+  <!--editor end -->
+
+  <!--publisher begin -->
+
+    <div class="item item-divider" ng-show=showPublisherEnabled>
+    Add Choice
+  </div>
+   <label class="item item-input" ng-show=showPublisherEnabled>
+    <input type="text" placeholder="Add Choice">
+  </label>
+
+   <div class="item item-divider" ng-show=showPublisherEnabled>
+    Add Follow-up Story
+  </div>
+  <label class="item item-input" ng-show=showPublisherEnabled>
+    <textarea rows="20" placeholder="Story"></textarea>
+  </label>
+    <!--publisher end -->
+
+  <button class="button button-block button-positive" ng-hide=showSelectEnabled>
+  CONFIRM CHANGES
+</button>
+
+
+   <label class="item item-radio" ng-repeat="leg in legs">
+    <input type="radio" name="test" value="{{leg.choice_code}}" ng-model="$parent.$parent.data.choice_code">
+    <div class="item-content">
+{{leg.choice_text}}   </div>
+    <i class="radio-icon ion-checkmark"></i>
+
+  </label>
+
+
+       
+
+
+  </form>
+
+
+      
+
+
+
+
+  </ion-content>
+</ion-view>
+

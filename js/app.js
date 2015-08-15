@@ -44,25 +44,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   views: {
     'tab-story': {
       templateUrl: 'templates/tab-story.html',
-      controller: 'StoryCtrl',
-      resolve: {
-        alllogs: function(Logs) {
-          return Logs.all(); }
-      }
+      controller: 'StoryCtrl'
     }
   }
 })
 
-.state('tab.dash', {
-  url: '/dash',
+.state('tab.add', {
+  url: '/add',
   views: {
-    'tab-dash': {
-      templateUrl: 'templates/tab-dash.html',
-      controller: 'DashCtrl',
-      resolve: {
-        allduties: function(Duties) {
-          return Duties.all(); }
-      }
+    'tab-add': {
+      templateUrl: 'templates/tab-add.html',
+      controller: 'StoryAddCtrl'
     }
   }
 })
