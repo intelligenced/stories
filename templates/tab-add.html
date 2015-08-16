@@ -12,7 +12,7 @@
 
  <form >
    <div class="item item-divider" ng-click="showSelectEnabled=!showSelectEnabled">
-   Select Toggle
+   Select Toggle <p>{{choices.selected.choice_text}}</p>
   </div>
 
 
@@ -25,9 +25,15 @@
 
   </label>
   <div class="item item-text-wrap" ng-show=showSelectEnabled >
-    {{story}}
-  </div>
+    <p>{{story}} </p> 
 
+    <div  ng-show="num_of_choices"> <br>{{num_of_choices}} Sub Choices <br><br>
+    <p ng-repeat="have_choice in have_choices"> 
+    {{have_choice.choice_text}}
+    </p>
+    </div>
+    </div>
+ 
     <!--editor begin -->
 
    <div class="item item-divider" ng-show=showEditorEnabled>
@@ -66,7 +72,7 @@
   </label>
     <!--publisher end -->
 
-  <button class="button button-block button-positive" ng-hide=showSelectEnabled>
+  <button class="button button-block button-positive" ng-hide=showSelectEnabled ng-click=postValues()>
   CONFIRM CHANGES
 </button>
 

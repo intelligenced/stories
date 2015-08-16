@@ -56,15 +56,16 @@ angular.module('starter.controllers', [])
 
 
     $scope.choices={all:response.data,selected:response.data[0]};
-    console.log($scope.choices.all);
-    console.log(response.data[0].choice_parent[0]);
+    //console.log($scope.choices.all);
+    //console.log(response.data[0].choice_parent[0]);
     $scope.choices.myselected=response.data[0].choice_parent[0];
     user_code=response.data[0].choice_code;
        var get_story = 'js/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
-            console.log($scope.story);
+            //console.log($scope.story);
           });
+
 
 
 
@@ -73,23 +74,47 @@ angular.module('starter.controllers', [])
   })
 
   $scope.submit=function(){
-    console.log("I have been executed");
-    console.log($scope.choices.selected.choice_code)
+    //console.log("I have been executed");
+    //console.log($scope.choices.selected.choice_code)
 
       user_code=$scope.choices.selected.choice_code;   
           var get_story = 'js/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
-            console.log($scope.story);
+            //console.log($scope.story);
           });
 
+          var get_num_choices_from_choice_code='js/get_num_choices_from_choice_code.php';
+          $http.post(get_num_choices_from_choice_code,{code :user_code}).then(function(res){
+            $scope.have_choices=res.data;
+            if($scope.have_choices==""){$scope.num_of_choices='';
+          }else{
+           //  console.log("LETS TEST IT OUT");
+
+            $scope.num_of_choices=Object.keys($scope.have_choices).length;
+           // console.log($scope.have_choices);
+
+
+
+          }
+           
+
+
+          });
+
+        
 
 
 
 
 
   }
-  console.log("I am inside the controller");
+
+  $scope.postValues=function(){
+    console.log("I have been executed");
+
+
+  }
 
   $scope.showEditor=function(){
     $scope.showEditorEnabled=true;
@@ -97,7 +122,6 @@ angular.module('starter.controllers', [])
                 $scope.showSelectEnabled=false;
 
 
-    console.log("you are in ");
   }
  $scope.showPublisher=function(){
     $scope.showPublisherEnabled=true;
@@ -106,7 +130,6 @@ angular.module('starter.controllers', [])
 
 
 
-    console.log("you are in ");
   }
  $scope.showSelect=function(){
     $scope.showPublisherEnabled=false;
@@ -114,7 +137,6 @@ angular.module('starter.controllers', [])
         $scope.showSelectEnabled=true;
 
 
-    console.log("you are in ");
   }
 
 

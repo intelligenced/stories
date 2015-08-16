@@ -23,7 +23,7 @@ echo json_encode($row[0]);
  
 $dir = 'sqlite:stories.sqlite';
  $dbh = new PDO($dir) or die("cannot open database");
- $query = "SELECT * FROM choices
+ $query = "SELECT * FROM choices ORDER BY choice_code DESC
  ";
 
 
