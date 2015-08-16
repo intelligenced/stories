@@ -2,7 +2,6 @@
   <ion-content>
   <div class="button-bar">
   <a class="button" ng-click="showEditor()">Edit</a>
-  <a class="button" ng-click="showSelect()">Select</a>
   <a class="button" ng-click="showPublisher()">Add</a>
 </div>
 
@@ -12,10 +11,12 @@
 
 
  <form >
+   <div class="item item-divider" ng-click="showSelectEnabled=!showSelectEnabled">
+   Select Toggle
+  </div>
 
 
-       <div class="card" ng-show=showSelectEnabled>
-        <label class="item item-input item-select">
+        <label class="item item-input item-select" ng-show=showSelectEnabled>
     <div class="input-label">
       Under Choice
     </div>
@@ -23,10 +24,9 @@
         <option value="" ng-if="false"></option></select>
 
   </label>
-  <div class="item item-text-wrap" >
+  <div class="item item-text-wrap" ng-show=showSelectEnabled >
     {{story}}
   </div>
-</div>
 
     <!--editor begin -->
 
