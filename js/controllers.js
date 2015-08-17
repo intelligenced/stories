@@ -111,8 +111,18 @@ angular.module('starter.controllers', [])
   }
 
   $scope.postValues=function(){
-    console.log("I have been executed");
+    choice_code=$scope.choices.selected.choice_code;
+    choice_text=$scope.choices.selected.choice_text;
+    updated_story=$scope.story;
 
+    
+
+    var update_story = 'js/update_story.php';
+    $http.post(update_story, {choice_code :choice_code,choice_text:choice_text,story:updated_story})
+   .then(function (res){
+            $scope.message = res.data;
+            console.log($scope.message);
+          });
 
   }
 

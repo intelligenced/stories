@@ -50,7 +50,7 @@
 
 
    <label class="item item-input" ng-show=showEditorEnabled>
-    <textarea rows="20" ng-model="story" placeholder="Story"></textarea>
+    <textarea ng-model="$parent.story" placeholder="Story"></textarea>
   </label>
 
   <!--editor end -->
@@ -68,11 +68,11 @@
     Add Follow-up Story
   </div>
   <label class="item item-input" ng-show=showPublisherEnabled>
-    <textarea rows="20" placeholder="Story"></textarea>
+    <textarea  placeholder="Story"></textarea>
   </label>
     <!--publisher end -->
 
-  <button class="button button-block button-positive" ng-hide=showSelectEnabled ng-click=postValues()>
+  <button class="button button-block button-positive"  ng-click=postValues()>
   CONFIRM CHANGES
 </button>
 
