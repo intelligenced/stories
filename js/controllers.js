@@ -144,10 +144,8 @@ angular.module('starter.controllers', [])
    .then(function (res){
             $scope.message = res.data;
             console.log($scope.message);
-          });
 
-   //RESET
-
+            
   $http.get("js/get_choices.php").then(function(response){
 
 
@@ -164,12 +162,29 @@ angular.module('starter.controllers', [])
 
 
 
-
-
-
   });
 
+
+
+
+
+
+
+
+
+          });
+
+   //RESET
   
+
+
+
+
+$scope.submit();
+
+$scope.add_choice="";
+  $scope.add_story="";
+
 
 
 
