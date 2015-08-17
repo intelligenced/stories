@@ -35,6 +35,8 @@ angular.module('starter.controllers', [])
 
 
 
+
+
       }
    
 
@@ -56,10 +58,14 @@ angular.module('starter.controllers', [])
 
 
     $scope.choices={all:response.data,selected:response.data[0]};
-    //console.log($scope.choices.all);
+    console.log($scope.choices.all);
     //console.log(response.data[0].choice_parent[0]);
     $scope.choices.myselected=response.data[0].choice_parent[0];
     user_code=response.data[0].choice_code;
+    user_text=response.data[0].choice_text;
+
+    $scope.grandParentsSelected(user_text);
+
        var get_story = 'js/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
@@ -97,14 +103,24 @@ angular.module('starter.controllers', [])
 
 
           }
+
            
 
 
           });
 
+
+          var getParentLink = 'js/get_parents_from_choice_code.php';
+          $http.post(getParentLink, {code :user_code}).then(function (res){
+            $scope.have_parents = res.data;
+            //console.log($scope.have_parents);
+            //console.log($scope.story);
+          });
+
         
 
 
+                     
 
 
 
@@ -217,6 +233,36 @@ $scope.add_choice="";
     console.log(test);
     console.log($scope.choices.selected.choice_text);
      console.log($scope.have_choices.choice_text);
+
+
+  }
+
+    $scope.grandParentsSelected=function(param){
+
+    var bam = param;
+    console.log(bam);
+    //var test = $scope.choices.all[2];
+    var test = $scope.choices.all;
+
+    for (var key in test) {
+       if (test.hasOwnProperty(key)) {
+          if(test[key].choice_text==bam){
+
+               $scope.choices.selected=test[key];
+                   $scope.submit();
+
+
+          };
+       }
+    }
+
+
+
+ 
+
+    //console.log(test);
+   // console.log($scope.choices.selected.choice_text);
+   //  console.log($scope.have_choices.choice_text);
 
 
   }

@@ -25,14 +25,27 @@
 
   </label>
   <div class="item item-text-wrap" ng-show=showSelectEnabled >
+
+   <p ng-repeat="have_parent in have_parents"> 
+    <a ng-click="grandParentsSelected(have_parent.choice_text)" > <u>{{have_parent.choice_text}} </u> </a>
+    </p><br>
+
     <p>{{story}} </p> 
 
-    <div  ng-show="num_of_choices"> <br>{{num_of_choices}} Sub Choices <br><br>
+   
+
+    <div  ng-show="num_of_choices"><br>
     <p ng-repeat="have_choice in have_choices"> 
     <a ng-click="subchoiceSelected(have_choice.choice_text)" > <u>{{have_choice.choice_text}} </u> </a>
     </p>
     </div>
+
+
+
+
     </div>
+
+
  
     <!--editor begin -->
 
@@ -76,9 +89,11 @@
   Edit Changes
 </button>
 
+
   <button class="button button-block button-positive"  ng-show=showPublisherEnabled ng-click=postStory()>
   Add Story
 </button>
+
 
 
    <label class="item item-radio" ng-repeat="leg in legs">
