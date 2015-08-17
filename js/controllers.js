@@ -145,20 +145,20 @@ angular.module('starter.controllers', [])
             $scope.message = res.data;
             console.log($scope.message);
 
-            
+
   $http.get("js/get_choices.php").then(function(response){
 
 
     $scope.choices={all:response.data,selected:response.data[0]};
     //console.log($scope.choices.all);
     //console.log(response.data[0].choice_parent[0]);
-    $scope.choices.myselected=response.data[0].choice_parent[0];
+   /* $scope.choices.myselected=response.data[0].choice_parent[0];
     user_code=response.data[0].choice_code;
        var get_story = 'js/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
             //console.log($scope.story);
-          });
+          }); */
 
 
 
@@ -180,12 +180,43 @@ angular.module('starter.controllers', [])
 
 
 
-$scope.submit();
+//$scope.submit();
 
 $scope.add_choice="";
   $scope.add_story="";
 
 
+
+
+  }
+
+
+  $scope.subchoiceSelected=function(param){
+
+    var bam = param;
+    console.log(bam);
+    //var test = $scope.choices.all[2];
+    var test = $scope.choices.all;
+
+    for (var key in test) {
+       if (test.hasOwnProperty(key)) {
+          if(test[key].choice_text==bam){
+
+               $scope.choices.selected=test[key];
+                   $scope.submit();
+
+
+          };
+       }
+    }
+
+
+
+ 
+
+    console.log(test);
+    console.log($scope.choices.selected.choice_text);
+     console.log($scope.have_choices.choice_text);
 
 
   }

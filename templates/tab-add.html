@@ -29,7 +29,7 @@
 
     <div  ng-show="num_of_choices"> <br>{{num_of_choices}} Sub Choices <br><br>
     <p ng-repeat="have_choice in have_choices"> 
-    {{have_choice.choice_text}}
+    <a ng-click="subchoiceSelected(have_choice.choice_text)" > <u>{{have_choice.choice_text}} </u> </a>
     </p>
     </div>
     </div>
