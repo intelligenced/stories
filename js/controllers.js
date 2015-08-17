@@ -126,6 +126,46 @@ angular.module('starter.controllers', [])
 
   }
 
+   $scope.deleteStory=function(){
+    choice_code=$scope.choices.selected.choice_code;
+
+    console.log(choice_code);
+
+$scope.showDeleterEnabled=false;    
+
+    var deleteStoryLink = 'js/delete_story.php';
+    $http.post(deleteStoryLink, {choice_code :choice_code})
+   .then(function (res){
+            $scope.message = res.data;
+            console.log($scope.message);
+          });
+
+
+  $http.get("js/get_choices.php").then(function(response){
+
+
+    $scope.choices={all:response.data,selected:response.data[0]};
+    //console.log($scope.choices.all);
+    //console.log(response.data[0].choice_parent[0]);
+    $scope.choices.myselected=response.data[0].choice_parent[0];
+    user_code=response.data[0].choice_code;
+       var get_story = 'js/get_story_from_choice_code.php';
+          $http.post(get_story, {code :user_code}).then(function (res){
+            $scope.story = res.data[0].story;
+            //console.log($scope.story);
+          }); 
+
+
+
+
+
+  });
+
+
+
+
+  }
+
   $scope.editStory=function(){
     choice_code=$scope.choices.selected.choice_code;
     choice_text=$scope.choices.selected.choice_text;
@@ -286,6 +326,13 @@ $scope.add_choice="";
     $scope.showPublisherEnabled=false;
         $scope.showEditorEnabled=false;
         $scope.showSelectEnabled=true;
+
+
+  }
+
+   $scope.showDeleter=function(){
+    $scope.showDeleterEnabled=!$scope.showDeleterEnabled;
+    
 
 
   }
