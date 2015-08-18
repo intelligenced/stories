@@ -201,63 +201,9 @@ $scope.showDeleterEnabled=false;
             $scope.message = res.data;
             console.log($scope.message);
 
-
-  $http.get("js/get_choices.php").then(function(response){
-
-
-    $scope.choices={all:response.data};
+            $scope.refreshEverything();
 
 
-
-
-
-    //console.log($scope.choices.all);
-    //console.log(response.data[0].choice_parent[0]);
-    $scope.choices.myselected=response.data[0].choice_parent[0];
-    user_code=response.data[0].choice_code;
-       var get_story = 'js/get_story_from_choice_code.php';
-          $http.post(get_story, {code :user_code}).then(function (res){
-            $scope.story = res.data[0].story;
-            //console.log($scope.story);
-
-          var get_num_choices_from_choice_code='js/get_num_choices_from_choice_code.php';
-          $http.post(get_num_choices_from_choice_code,{code :user_code}).then(function(res){
-            $scope.have_choices=res.data;
-            if($scope.have_choices==""){$scope.num_of_choices='';
-          }else{
-           //  console.log("LETS TEST IT OUT");
-
-            $scope.num_of_choices=Object.keys($scope.have_choices).length;
-           // console.log($scope.have_choices);
-
-
-
-          }
-
-           
-
-
-          });
-
-
-          var getParentLink = 'js/get_parents_from_choice_code.php';
-          $http.post(getParentLink, {code :user_code}).then(function (res){
-            $scope.have_parents = res.data;
-            //console.log($scope.have_parents);
-            //console.log($scope.story);
-          });
-
-
-
-
-
-
-
-          }); 
-
-
-
-  });
 
 
 
@@ -376,6 +322,66 @@ $scope.add_choice="";
     
 
 
+  }
+
+  $scope.refreshEverything=function(){
+
+  $http.get("js/get_choices.php").then(function(response){
+
+
+    $scope.choices={all:response.data,selected:response.data[0]};
+
+
+
+
+
+    //console.log($scope.choices.all);
+    //console.log(response.data[0].choice_parent[0]);
+    $scope.choices.myselected=response.data[0].choice_parent[0];
+    user_code=response.data[0].choice_code;
+       var get_story = 'js/get_story_from_choice_code.php';
+          $http.post(get_story, {code :user_code}).then(function (res){
+            $scope.story = res.data[0].story;
+            //console.log($scope.story);
+
+          var get_num_choices_from_choice_code='js/get_num_choices_from_choice_code.php';
+          $http.post(get_num_choices_from_choice_code,{code :user_code}).then(function(res){
+            $scope.have_choices=res.data;
+            if($scope.have_choices==""){$scope.num_of_choices='';
+          }else{
+           //  console.log("LETS TEST IT OUT");
+
+            $scope.num_of_choices=Object.keys($scope.have_choices).length;
+           // console.log($scope.have_choices);
+
+
+
+          }
+
+           
+
+
+          });
+
+
+          var getParentLink = 'js/get_parents_from_choice_code.php';
+          $http.post(getParentLink, {code :user_code}).then(function (res){
+            $scope.have_parents = res.data;
+            //console.log($scope.have_parents);
+            //console.log($scope.story);
+          });
+
+
+
+
+
+
+
+          }); 
+
+
+
+  });
   }
 
 
