@@ -2,13 +2,15 @@ angular.module('starter.controllers', [])
 
 .controller('StoryCtrl', function($scope,$http) {
 
-      $http.get("js/function.php").then(function(response){
+      $http.get("./php/function.php").then(function(response){
         $scope.logs = response.data;
         $scope.story= $scope.logs[0].story;
-          user_code=$scope.logs[0].code;          
-          var link = 'js/get_choices_from_story_choice_code.php';
+          user_code=$scope.logs[0].code;    
+
+          var link = './php/get_choices_from_story_choice_code.php';
           $http.post(link, {code :user_code}).then(function (res){
             $scope.legs = res.data;
+            console.log($scope.legs);
           });
           
       });
@@ -17,11 +19,11 @@ angular.module('starter.controllers', [])
 
       $scope.submit = function(){
           user_code=$scope.data.choice_code;
-          var get_story = 'js/get_story_from_choice_code.php';
+          var get_story = './php/get_story_from_choice_code.php';
            $http.post(get_story, {code :user_code}).then(function (res){
             $scope.logs = res.data;
             $scope.story= $scope.logs[0].story;
-                 var link = 'js/get_choices_from_story_choice_code.php';
+                 var link = './php/get_choices_from_story_choice_code.php';
           $http.post(link, {code :user_code}).then(function (res){
             $scope.legs = res.data;
           });
@@ -54,7 +56,7 @@ angular.module('starter.controllers', [])
 
 
 
-  $http.get("js/get_choices.php").then(function(response){
+  $http.get("./php/get_choices.php").then(function(response){
 
 
     $scope.choices={all:response.data,selected:response.data[0]};
@@ -66,7 +68,7 @@ angular.module('starter.controllers', [])
 
     $scope.grandParentsSelected(user_text);
 
-       var get_story = 'js/get_story_from_choice_code.php';
+       var get_story = './php/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
             //console.log($scope.story);
@@ -84,13 +86,13 @@ angular.module('starter.controllers', [])
     //console.log($scope.choices.selected.choice_code)
 
       user_code=$scope.choices.selected.choice_code;   
-          var get_story = 'js/get_story_from_choice_code.php';
+          var get_story = './php/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
             //console.log($scope.story);
           });
 
-          var get_num_choices_from_choice_code='js/get_num_choices_from_choice_code.php';
+          var get_num_choices_from_choice_code='./php/get_num_choices_from_choice_code.php';
           $http.post(get_num_choices_from_choice_code,{code :user_code}).then(function(res){
             $scope.have_choices=res.data;
             if($scope.have_choices==""){$scope.num_of_choices='';
@@ -110,7 +112,7 @@ angular.module('starter.controllers', [])
           });
 
 
-          var getParentLink = 'js/get_parents_from_choice_code.php';
+          var getParentLink = './php/get_parents_from_choice_code.php';
           $http.post(getParentLink, {code :user_code}).then(function (res){
             $scope.have_parents = res.data;
             //console.log($scope.have_parents);
@@ -133,7 +135,7 @@ angular.module('starter.controllers', [])
 
 $scope.showDeleterEnabled=false;    
 
-    var deleteStoryLink = 'js/delete_story.php';
+    var deleteStoryLink = './php/delete_story.php';
     $http.post(deleteStoryLink, {choice_code :choice_code})
    .then(function (res){
             $scope.message = res.data;
@@ -141,7 +143,7 @@ $scope.showDeleterEnabled=false;
           });
 
 
-  $http.get("js/get_choices.php").then(function(response){
+  $http.get("./php/get_choices.php").then(function(response){
 
 
     $scope.choices={all:response.data,selected:response.data[0]};
@@ -149,7 +151,7 @@ $scope.showDeleterEnabled=false;
     //console.log(response.data[0].choice_parent[0]);
     $scope.choices.myselected=response.data[0].choice_parent[0];
     user_code=response.data[0].choice_code;
-       var get_story = 'js/get_story_from_choice_code.php';
+       var get_story = './php/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
             //console.log($scope.story);
@@ -173,7 +175,7 @@ $scope.showDeleterEnabled=false;
 
     
 
-    var update_story = 'js/update_story.php';
+    var update_story = './php/update_story.php';
     $http.post(update_story, {choice_code :choice_code,choice_text:choice_text,story:updated_story})
    .then(function (res){
             $scope.message = res.data;
@@ -195,7 +197,7 @@ $scope.showDeleterEnabled=false;
 
     
 
-    var add_story_link = 'js/add_story.php';
+    var add_story_link = './php/add_story.php';
     $http.post(add_story_link, {parent :parent,choice_text:choice_text,story:story})
    .then(function (res){
             $scope.message = res.data;
@@ -326,7 +328,7 @@ $scope.add_choice="";
 
   $scope.refreshEverything=function(){
 
-  $http.get("js/get_choices.php").then(function(response){
+  $http.get("./php/get_choices.php").then(function(response){
 
 
     $scope.choices={all:response.data,selected:response.data[0]};
@@ -339,12 +341,12 @@ $scope.add_choice="";
     //console.log(response.data[0].choice_parent[0]);
     $scope.choices.myselected=response.data[0].choice_parent[0];
     user_code=response.data[0].choice_code;
-       var get_story = 'js/get_story_from_choice_code.php';
+       var get_story = './php/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
             //console.log($scope.story);
 
-          var get_num_choices_from_choice_code='js/get_num_choices_from_choice_code.php';
+          var get_num_choices_from_choice_code='./php/get_num_choices_from_choice_code.php';
           $http.post(get_num_choices_from_choice_code,{code :user_code}).then(function(res){
             $scope.have_choices=res.data;
             if($scope.have_choices==""){$scope.num_of_choices='';
@@ -364,7 +366,7 @@ $scope.add_choice="";
           });
 
 
-          var getParentLink = 'js/get_parents_from_choice_code.php';
+          var getParentLink = './php/get_parents_from_choice_code.php';
           $http.post(getParentLink, {code :user_code}).then(function (res){
             $scope.have_parents = res.data;
             //console.log($scope.have_parents);
@@ -391,4 +393,3 @@ $scope.add_choice="";
 
 
 });     
-
