@@ -49,15 +49,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   }
 })
 
-.state('tab.play', {
-  url: '/play',
-  views: {
-    'tab-play': {
-      templateUrl: 'templates/tab-play.html',
-      controller: 'DemoCtrl'
-    }
-  }
-})
 
 .state('tab.add', {
   url: '/add',
