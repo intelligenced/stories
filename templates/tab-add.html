@@ -18,6 +18,20 @@
    Select Toggle <p>{{choices.selected.choice_text}}</p>
   </div>
 
+<ui-select ng-model="choices.selected">
+    <ui-select-match placeholder="   Search...">{{$select.selected.choice_text}}</ui-select-match>
+    <ui-select-choices repeat="choice in choices.all | filter: $select.search track by choice.choice_code">
+        <b>Choice Text</b>
+        <div ng-bind-html="choice.choice_text | highlight: $select.search"></div>
+    </ui-select-choices>
+</ui-select>
+
+
+
+
+
+
+
 
         <label class="item item-input item-select" ng-show=showSelectEnabled>
     <div class="input-label">
