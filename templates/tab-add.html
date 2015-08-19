@@ -17,9 +17,9 @@
    <div class="item item-divider" ng-click="showSelectEnabled=!showSelectEnabled">
    Select Toggle <p>{{choices.selected.choice_text}}</p>
   </div>
-<div>
+<div class="banana" ng-show=showSelectEnabled> <h4> Search </h4>
 <ui-select  ng-change=submit() ng-model="choices.selected">
-    <ui-select-match placeholder="   Search...">{{$select.selected.choice_text}}</ui-select-match>
+    <ui-select-match placeholder="   Enter choice text...">{{$select.selected.choice_text}}</ui-select-match>
     <ui-select-choices repeat="choice in choices.all | filter: $select.search track by choice.choice_code">
         <b>Choice Text</b>
         <div ng-bind-html="choice.choice_text | highlight: $select.search"></div>
@@ -72,7 +72,7 @@
   </div>
 
   <label class="item item-input" ng-show=showEditorEnabled>
-    <textarea  ng-model="choices.selected.choice_text" value="banana" placeholder="Choice"></textarea>
+    <textarea  ng-model="choices.selected.choice_text"  placeholder="Choice"></textarea>
   </label>
 
      <div class="item item-divider" ng-show=showEditorEnabled>
