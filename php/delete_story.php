@@ -7,9 +7,19 @@
 		$choice_code = $request->choice_code;
 
 		if($choice_code=='45'){}else{
+
+		$query = "DELETE FROM story WHERE code=:choice_code";
+		$sth   = $dbh->prepare($query);
+		$sth->execute(array(':choice_code' => $choice_code) );	
 		
- 		$delete_story = $dbh->exec("DELETE FROM story WHERE code='$choice_code'")or die(print_r($dbh->errorInfo(), true));
- 		$delete_choice = $dbh->exec("DELETE FROM choices WHERE choice_code='$choice_code'")or die(print_r($dbh->errorInfo(), true));
+ 		/*$delete_story = $dbh->exec("DELETE FROM story WHERE code='$choice_code'")or die(print_r($dbh->errorInfo(), true));*/
+
+ 		$query = "DELETE FROM choices WHERE choice_code=:choice_code";
+		$sth   = $dbh->prepare($query);
+		$sth->execute(array(':choice_code' => $choice_code) );
+
+		/*
+ 		$delete_choice = $dbh->exec("DELETE FROM choices WHERE choice_code='$choice_code'")or die(print_r($dbh->errorInfo(), true));*/
 
 		}
 	}

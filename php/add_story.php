@@ -23,8 +23,8 @@
 		/*$sql = $dbh->prepare("INSERT INTO story (story) VALUES (:story");
 		$dbh->exec(array(":story" => $story))or die(print_r($dbh->errorInfo(), true));*/
 
-		$query = "INSERT INTO story(story) VALUES(:story)";
-		$sth   = $dbh->prepare($query);
+		$insert_story = "INSERT INTO story(story) VALUES(:story)";
+		$sth   = $dbh->prepare($insert_story);
 		$sth->execute(array(':story' => $story) );	
 
 
@@ -43,7 +43,16 @@
 
  		$new_code = $myArray[0]['code'];
 
- 		$add_choice = $dbh->exec("INSERT INTO choices(choice_text,choice_code,parent) VALUES('$choice_text','$new_code','$parent')")or die(print_r($dbh->errorInfo(), true));
+ 		//echo $new_code;
+
+ 		$queryz = "INSERT INTO choices(choice_text,choice_code,parent) VALUES(:choice_text,:new_code,:parent)";
+		$sth   = $dbh->prepare($queryz);
+		$sth->execute(array(':choice_text' => $choice_text,':new_code'=>$new_code,':parent'=>$parent) );	
+
+/*
+ 		$add_choice = $dbh->exec("INSERT INTO choices(choice_text,choice_code,parent) VALUES('$choice_text','$new_code','$parent')")or die(print_r($dbh->errorInfo(), true));*/
 		}
+
+
 
 ?>
