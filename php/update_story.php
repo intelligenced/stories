@@ -14,8 +14,13 @@
 		echo $story;
 	
 	 		$update_choice = $dbh->exec("UPDATE choices SET choice_text='$choice_text' WHERE choice_code='$choice_code'")or die(print_r($dbh->errorInfo(), true));
+/*
+ 		$update_story = $dbh->exec("UPDATE story SET story='$story' WHERE code='$choice_code'")or die(print_r($dbh->errorInfo(), true));*/
 
- 		$update_story = $dbh->exec("UPDATE story SET story='$story' WHERE code='$choice_code'")or die(print_r($dbh->errorInfo(), true));
+
+ 		$query = "UPDATE story SET story=:story WHERE code=:choice_code";
+		$sth   = $dbh->prepare($query);
+		$sth->execute(array(':story' => $story,':choice_code'=> $choice_code) );	
  	
 		}
 

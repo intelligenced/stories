@@ -24,8 +24,8 @@
 		$dbh->exec(array(":story" => $story))or die(print_r($dbh->errorInfo(), true));*/
 
 		$query = "INSERT INTO story(story) VALUES(:story)";
-$sth   = $dbh->prepare($query);
-$sth->execute(array(':story' => $story) );
+		$sth   = $dbh->prepare($query);
+		$sth->execute(array(':story' => $story) );	
 
 
 
