@@ -1,5 +1,11 @@
 angular.module('starter.controllers', ['ngSanitize', 'ui.select'])
 
+.filter('html', ['$sce', function ($sce) { 
+    return function (text) {
+        return $sce.trustAsHtml(text);
+    };    
+}])
+
 .filter('propsFilter', function() {
   return function(items, props) {
     var out = [];
@@ -84,10 +90,9 @@ angular.module('starter.controllers', ['ngSanitize', 'ui.select'])
   
 })
 
-.controller('StoryAddCtrl',function($scope,$http){
+.controller('StoryAddCtrl',function($scope,$http,$sce){
         $scope.showSelectEnabled=true;
 
-        $scope.myHTML ='Much Cool.. Wow';
 
 
 
@@ -120,10 +125,19 @@ angular.module('starter.controllers', ['ngSanitize', 'ui.select'])
     //console.log("I have been executed");
     //console.log($scope.choices.selected.choice_code)
 
+
+     
+
+   //console.log(baan);
+
+
       user_code=$scope.choices.selected.choice_code;   
           var get_story = './php/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
+               var baan = $scope.story;
+
+   $scope.thisCanBeusedInsideNgBindHtml =baan;
             //console.log($scope.story);
           });
 
