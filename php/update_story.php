@@ -13,7 +13,14 @@
 		echo $choice_code;
 		echo $story;
 	
-	 		$update_choice = $dbh->exec("UPDATE choices SET choice_text='$choice_text' WHERE choice_code='$choice_code'")or die(print_r($dbh->errorInfo(), true));
+	 	/*	$update_choice = $dbh->exec("UPDATE choices SET choice_text='$choice_text' WHERE choice_code='$choice_code'")or die(print_r($dbh->errorInfo(), true)); */
+
+
+	 		$update_choice = "UPDATE choices SET choice_text=:choice_text WHERE choice_code=:choice_code";
+		$sth   = $dbh->prepare($update_choice);
+		$sth->execute(array(':choice_text' => $choice_text,':choice_code'=> $choice_code) );	
+
+
 /*
  		$update_story = $dbh->exec("UPDATE story SET story='$story' WHERE code='$choice_code'")or die(print_r($dbh->errorInfo(), true));*/
 
