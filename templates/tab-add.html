@@ -1,5 +1,17 @@
 <ion-view view-title="Add">
+<!--
+<div class="float-button">
+  <span class="height-fix">
+    <a ui-sref="add-trip" class="content">
+      <i class="ion-plus-round"> </i>
+    </a>
+  </span>
+</div>
+-->
   <ion-content>
+
+
+
   <div class="button-bar">
   <a class="button" ng-click="showEditor()">Edit</a>
   <a class="button" ng-click="showPublisher()">Add</a>
@@ -48,9 +60,9 @@
     <a ng-click="grandParentsSelected(have_parent.choice_text)" > <u>{{have_parent.choice_text}} </u> </a>
     </p><br>
 
-    <p>{{story}} </p> 
+    <!--<p>{{story}} </p> -->
 
-<div ng-bind-html="thisCanBeusedInsideNgBindHtml | html"></div> 
+<div ng-bind-html="storyHTMLRender | html"></div> 
 
    
 

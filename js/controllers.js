@@ -135,9 +135,8 @@ angular.module('starter.controllers', ['ngSanitize', 'ui.select'])
           var get_story = './php/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
-               var baan = $scope.story;
-
-   $scope.thisCanBeusedInsideNgBindHtml =baan;
+     
+             $scope.renderStory($scope.story);
             //console.log($scope.story);
           });
 
@@ -228,8 +227,12 @@ $scope.showDeleterEnabled=false;
     $http.post(update_story, {choice_code :choice_code,choice_text:choice_text,story:updated_story})
    .then(function (res){
             $scope.message = res.data;
+                        $scope.refreshEverything();
+
             console.log($scope.message);
           });
+
+
 
   }
 
@@ -375,6 +378,11 @@ $scope.add_choice="";
 
   }
 
+  $scope.renderStory=function(param){
+            var HTMLStory = param;
+             $scope.storyHTMLRender =HTMLStory;
+  }
+
   $scope.refreshEverything=function(){
 
   $http.get("./php/get_choices.php").then(function(response){
@@ -393,6 +401,9 @@ $scope.add_choice="";
        var get_story = './php/get_story_from_choice_code.php';
           $http.post(get_story, {code :user_code}).then(function (res){
             $scope.story = res.data[0].story;
+           $scope.renderStory($scope.story);
+
+
             //console.log($scope.story);
 
           var get_num_choices_from_choice_code='./php/get_num_choices_from_choice_code.php';
