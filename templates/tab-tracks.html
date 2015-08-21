@@ -1,21 +1,30 @@
 <ion-view view-title="Tracks">
   <ion-content>
 
-   <div class="list">
-  
-<form>
-
-<div class="item item-divider" >
-    Add Tracks
+ <div class="item item-divider">
+    Add Track
   </div>
-   <label class="item item-input" >
-    <input type="text" ng-model="$parent.tracks" placeholder="Add Tracks">
+   <label class="item item-input">
+    <input type="text" ng-model="$parent.add_track" placeholder="Add Track">
   </label>
 
-  </form>
+  <button class="button button-block button-positive" >
+  Add Track
+</button>
 
+ <div class="item item-divider">
+    Delete Track
+  </div>
+   <label class="item item-input">
+    <input type="text" ng-model="$parent.add_track" placeholder="Add Track">
+  </label>
+
+  <button class="button button-block button-positive" >
+  Delete Track
+</button>
 
 
 
   </ion-content>
 </ion-view>
+
