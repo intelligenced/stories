@@ -1,5 +1,10 @@
 stories.controller('TrackCtrl', function($scope,$http) {
 
+$http.get("./php/get_tracks.php").then(function(response){
+  $scope.tracks = response.data;
+
+});
+
 
 
 $scope.addTrack = function(){
@@ -10,13 +15,7 @@ $scope.addTrack = function(){
     var result=res.data
             
             console.log(result);
-
-            
-          });
-
-
-
-
+ });
 }
 
 

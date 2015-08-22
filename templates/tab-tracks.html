@@ -1,28 +1,39 @@
 <ion-view view-title="Tracks">
   <ion-content>
 
- <div class="item item-divider">
-    Add Track
-  </div>
-   <label class="item item-input">
-    <input type="text" ng-model="$parent.add_track" placeholder="Add Track">
-  </label>
+  
 
-  <button class="button button-block button-positive" ng-click="addTrack()" >
+
+  <div class="banana"  ng-model="tracks.selected"><h4> Search  </h4>
+<ui-select >
+    <ui-select-match placeholder="   Enter track...">{{tracks.selected.track_name}}</ui-select-match>
+    <ui-select-choices repeat="track in tracks | filter: $select.search track by track.track_name">
+        <div ng-bind-html="track.track_name | highlight: $select.search"></div>
+    </ui-select-choices>
+</ui-select>   <button class="button button-clear button-positive" >
+  Delete Track
+</button></div>
+
+
+
+
+
+
+<ul class="list">
+
+
+   <li class="item item-input">
+    <input type="text" ng-model="$parent.add_track" placeholder="Add Track">
+
+
+  <button class="button button-clear button-positive" ng-click="addTrack()" >
   Add Track
 </button>
+  </li>
 
- <div class="item item-divider">
-    Delete Track
-  </div>
-   <label class="item item-input">
-    <input type="text" ng-model="$parent.add_track" placeholder="Add Track">
-  </label>
 
-  <button class="button button-block button-positive" >
-  Delete Track
-</button>
 
+ </ul>
 
 
   </ion-content>

@@ -8,6 +8,7 @@
 		$request = json_decode($postdata);
 		$track_name = $request->track_name; 
 	
+	echo $track_name;
 	
 
 	$sth= $dbh->prepare("INSERT INTO tracks(track_name) VALUES(:track_name)");
