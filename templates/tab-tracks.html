@@ -10,7 +10,7 @@
     <ui-select-choices repeat="track in tracks | filter: $select.search track by track.track_name">
         <div ng-bind-html="track.track_name | highlight: $select.search"></div>
     </ui-select-choices>
-</ui-select>   <button class="button button-clear button-positive" >
+</ui-select>   <button class="button button-clear button-positive" ng-click="deleteTrack()" >
   Delete Track
 </button></div>
 
