@@ -8,6 +8,8 @@
 
 		echo $track_id;
 
+		
+
 
 		$query = "DELETE FROM choices WHERE add_track=:track_id";
 		$sth   = $dbh->prepare($query);
