@@ -12,7 +12,8 @@ foreach ($dbh->query($query) as $row) {
 		$myArray[] = array(
     	"choice_text" => $row['choice_text'],
     	"choice_code"=>$row['choice_code'],
-     	"choice_parent" => $row['parent']
+     	"choice_parent" => $row['parent'],
+     	"choice_id"=>$row['id']
 
 		);   
 }

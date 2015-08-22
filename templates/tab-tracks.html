@@ -1,39 +1,112 @@
 <ion-view view-title="Tracks">
   <ion-content>
 
+  <ul class="list">
+
+
   
 
 
-  <div class="banana"  ng-model="tracks.selected"><h4> Search  </h4>
-<ui-select >
+  <li class="item"  ng-model="tracks.selected"><div class="downspace">Track Manager</div><ui-select >
     <ui-select-match placeholder="   Enter track...">{{tracks.selected.track_name}}</ui-select-match>
     <ui-select-choices repeat="track in tracks | filter: $select.search track by track.track_name">
         <div ng-bind-html="track.track_name | highlight: $select.search"></div>
     </ui-select-choices>
-</ui-select>   <button class="button button-clear button-positive" ng-click="deleteTrack()" >
+</ui-select>   
+
+   <div class="upspace" ng-model="choices.selected">
+<ui-select >
+    <ui-select-match placeholder="Choice">{{choices.selected.choice_text}}</ui-select-match>
+    <ui-select-choices repeat="choice in choices  | filter: $select.search track by choice.choice_text">
+        <div ng-bind-html="choice.choice_text | highlight: $select.search"></div>
+    </ui-select-choices>
+</ui-select></div>
+
+ <button class="button button-clear button-positive" ng-click="addTracktoChoice()" >
+  Start Track 
+</button>
+
+ <button class="button button-clear button-positive" ng-click="addTrackCheck()" >
+ Check
+</button>
+
+
+
+
+
+
+<button class="button button-clear button-positive" ng-click="deleteTrack()" >
   Delete Track
-</button></div>
-
-
-
-
-
-
-<ul class="list">
+</button></li>
 
 
    <li class="item item-input">
-    <input type="text" ng-model="$parent.add_track" placeholder="Add Track">
+    <input type="text" ng-model="$parent.add_track" placeholder="Add Track" required>
 
 
   <button class="button button-clear button-positive" ng-click="addTrack()" >
   Add Track
-</button>
+</button></li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<!--
+
   </li>
 
+  <li class="item">
+     Add/Check Track to Choices 
+</li>
 
 
- </ul>
+
+   <li class="item item-input">
+
+
+
+    <select>
+     <option value="" ng-if="false">
+        <option value="1" selected> Add </option> <option value="0"> Check </option></select>
+
+
+
+
+
+           <div class="banana"  ng-model="tracks.selected">
+<ui-select >
+    <ui-select-match placeholder="Choice">{{tracks.selected.track_name}}</ui-select-match>
+    <ui-select-choices repeat="track in tracks | filter: $select.search track by track.track_name">
+        <div ng-bind-html="track.track_name | highlight: $select.search"></div>
+    </ui-select-choices>
+</ui-select> </div>
+
+
+
+</div>
+
+
+      
+
+    </li>
+
+    <li  class="item item-input">
+              <button class="button button-clear button-positive" ng-click="addTrack()" >
+  Execute
+</button>
+
+    </li>
+
+ </ul>-->
 
 
   </ion-content>

@@ -9,6 +9,8 @@
 		$track_name = $request->track_name; 
 	
 	echo $track_name;
+
+	if($track_name===""){}else{
 	
 
 	$sth= $dbh->prepare("INSERT INTO tracks(track_name) VALUES(:track_name)");
@@ -17,6 +19,8 @@
 
 
 		}
+
+	}
 
 
 

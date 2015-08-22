@@ -3,7 +3,12 @@ padding: 15px;
 
 
  }
-
+.downspace{
+  padding-bottom: 15px;
+}
+.upspace{
+  padding-top: 15px;
+}
 .float-button {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
