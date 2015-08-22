@@ -13,8 +13,7 @@
 		echo $choice_id;
 
 		if($choice_id==""){}else{
-
-
+			
 		$update_choice = "UPDATE choices SET check_track=:track_id WHERE id=:choice_id";
 		$sth   = $dbh->prepare($update_choice);
 		$sth->execute(array(':track_id' => $track_id,':choice_id'=> $choice_id) )
