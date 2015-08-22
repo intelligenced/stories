@@ -18,6 +18,22 @@ $http.get("./php/get_choices.php").then(function(response){
 }//Refresh Choices
 
 
+$scope.refreshSetTracks = function(){
+
+$http.get("./php/get_set_tracks.php").then(function(response){
+  $scope.set_tracks = response.data;
+
+  });
+}//Refresh refreshSetTracks
+
+$scope.refreshCheckTracks = function(){
+
+$http.get("./php/get_checK_tracks.php").then(function(response){
+  $scope.check_tracks = response.data;
+
+  });
+}//Refresh refreshCheckTracks
+
 $scope.addTrack = function(){
 
   var track = $scope.add_track;
@@ -25,7 +41,7 @@ $scope.addTrack = function(){
   var link = './php/add_track.php';
   $http.post(link, {track_name :track}).then(function (res){
     var result=res.data
-    $scope.refreshTracks();
+$scope.refreshAll();
     console.log(result);
 
  });
@@ -42,7 +58,7 @@ console.log(choice);
   var link = './php/add_track_to_choice.php';
   $http.post(link, {track_id :track, choice_id:choice}).then(function (res){
     var result=res.data
-    $scope.refreshTracks();
+$scope.refreshAll();
     console.log(result);
 
  }); 
@@ -59,7 +75,7 @@ console.log(choice);
   var link = './php/add_track_check.php';
   $http.post(link, {track_id :track, choice_id:choice}).then(function (res){
     var result=res.data
-    $scope.refreshTracks();
+$scope.refreshAll();
     console.log(result);
 
  }); 
@@ -73,15 +89,24 @@ $scope.deleteTrack = function(){
   var link = './php/delete_track.php';
   $http.post(link, {track_id :track_id}).then(function (res){
     var result=res.data
-    $scope.refreshTracks();
+$scope.refreshAll();
     console.log(result);
 
  });
 }//Delete Track
 
 
-$scope.refreshTracks();
-$scope.refreshChoices();
+$scope.refreshAll = function(){
+  $scope.refreshTracks();
+  $scope.refreshChoices();
+  $scope.refreshSetTracks();
+  $scope.refreshCheckTracks();
+
+
+
+}//Delete Track
+
+$scope.refreshAll();
 
 
 
