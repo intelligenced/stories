@@ -137,7 +137,8 @@ $scope.showDeleterEnabled=false;
     $http.post(update_story, {choice_code :choice_code,choice_text:choice_text,story:updated_story})
    .then(function (res){
             $scope.message = res.data;
-                        $scope.refreshEverything();
+                     //   $scope.refreshEverything();
+
 
             console.log($scope.message);
           });
