@@ -13,8 +13,10 @@
 
 
   <div class="button-bar">
+    <a class="button" ng-click="showSelect()">Select</a>
+      <a class="button" ng-click="showPublisher()">Add</a>
+
   <a class="button" ng-click="showEditor()">Edit</a>
-  <a class="button" ng-click="showPublisher()">Add</a>
 
 
 
@@ -26,8 +28,8 @@
 
 
  <form name="bananaform">
-   <div class="item item-divider" ng-click="showSelectEnabled=!showSelectEnabled">
-   Select Toggle <p>{{choices.selected.choice_text}}</p>
+   <div class="item item-divider">
+    <p>UNDER STORY : {{choices.selected.choice_text}}</p>
   </div>
 <div class="banana" ng-show=showSelectEnabled> <h4> Search </h4>
 <ui-select  ng-change=submit() ng-model="choices.selected">
