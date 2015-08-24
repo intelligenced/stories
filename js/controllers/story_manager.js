@@ -35,6 +35,36 @@ stories.controller('StoryAddCtrl',function($scope,$http,$sce){
 
   })
 
+
+  $scope.addRedirect=function(){
+
+  console.log("you are inside the redirect");
+        parent=$scope.choices.selected.choice_code; 
+        redirect=$scope.choices.existing.choice_code;
+        redirect_text=$scope.add_redirect_choice;
+
+        console.log(parent);  
+        console.log(redirect);  
+        console.log(redirect_text);  
+
+        var redirect_link = './php/add_redirect.php';
+        $http.post(redirect_link, {parent :parent,choice_text:redirect_text,choice_code:redirect}).then(function (res){
+            $scope.validation = res.data;
+                console.log($scope.validation);
+                            $scope.refreshEverything();
+
+          });
+
+
+
+
+
+
+
+
+
+  }
+
   $scope.submit=function(){
     //console.log("I have been executed");
     //console.log($scope.choices.selected.choice_code)

@@ -32,7 +32,7 @@
 <div class="banana" ng-show=showSelectEnabled> <h4> Search </h4>
 <ui-select  ng-change=submit() ng-model="choices.selected">
     <ui-select-match placeholder="   Enter choice text...">{{$select.selected.choice_text}}</ui-select-match>
-    <ui-select-choices repeat="choice in choices.all | filter: $select.search track by choice.choice_code">
+    <ui-select-choices repeat="choice in choices.all | filter: $select.search track by choice.choice_id">
         <b>Choice Text</b>
         <div ng-bind-html="choice.choice_text | highlight: $select.search"></div>
     </ui-select-choices>
@@ -101,8 +101,8 @@
   <!--editor end -->
 
   <!--publisher begin -->
-
-  <ion-toggle ng-model="addNewChoice" toggle-class="toggle-positive" ng-show=showPublisherEnabled ng-change="showExistingEnabled=!showExistingEnabled"> Redirect Choice</ion-toggle>
+<div ng-show=showPublisherEnabled>
+  <ion-toggle ng-model="addNewChoice" toggle-class="toggle-positive" ng-change="showExistingEnabled=!showExistingEnabled"> Redirect Choice</ion-toggle>
    <label class="item item-input" ng-show=showExistingEnabled>
     <input type="text" ng-model="$parent.add_redirect_choice" placeholder="Add Redirect Choice Text">
   </label>
@@ -114,13 +114,15 @@
       Redirect to Existing Choice
     </div>
       <select ng-model="choices.existing" ng-options="choice.choice_text for choice in choices.all" ng-change=submit()>
-        <option value="" ng-if="false"></option></select>
+        <option value="">Select a choice</option></select>
 
   </label>
 
-   <button class="button button-block button-positive"  ng-show=showExistingEnabled>
-  Redirect Changes
+   <button class="button button-block button-positive"  ng-show=showExistingEnabled ng-click="addRedirect()">
+  Add Redirect
 </button>
+
+</div>
 
 
  
