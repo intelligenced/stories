@@ -20,6 +20,7 @@
 
 
 
+
 </div>
 
    <div class="list">
@@ -140,6 +141,9 @@
   </label>
     <!--publisher end -->
 
+
+
+
   <button class="button button-block button-positive"  ng-show=showEditorEnabled ng-click=editStory()>
   Edit Changes
 </button>
@@ -158,6 +162,17 @@
   Confirm Deletion
 </button>
 
+<!--redirector begins -->
+   <label class="item item-input item-select" ng-show=showEditorEnabled >
+    <div class="input-label">
+     <button class="button button-clear button-positive" ng-click="deleteRedirect()" >
+Delete    </div>
+      <select ng-model="redirects.selected" ng-options="redirect.choice_text for redirect in redirects">
+          <option value="">select redirect</option></select>
+
+  </label>
+
+  <!--redirector ends-->
        
 
 

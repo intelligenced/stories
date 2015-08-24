@@ -33,7 +33,38 @@ stories.controller('StoryAddCtrl',function($scope,$http,$sce){
 
 
 
-  })
+  });
+
+  $scope.getAllRedirects=function(){
+
+
+    $http.get("./php/get_redirects.php").then(function(response){
+      $scope.redirects=response.data;
+
+
+    });
+
+    }
+
+
+       $scope.getAllRedirects();
+
+  $scope.deleteRedirect=function(){
+    delete_redirect = $scope.redirects.selected.choice_id;
+   // console.log(delete_redirect);
+   // delete_redirect_link=
+     var redirect_link = './php/delete_redirect.php';
+    $http.post(redirect_link, {choice_id :delete_redirect}).then(function (res){
+        $scope.validation = res.data;
+        console.log($scope.validation);
+        $scope.refreshEverything();
+
+       });
+     $scope.getAllRedirects();
+
+
+
+  } 
 
 
   $scope.addRedirect=function(){
@@ -329,6 +360,9 @@ $scope.add_choice="";
   }
 
   $scope.refreshEverything=function(){
+
+           $scope.getAllRedirects();
+
 
   $http.get("./php/get_choices.php").then(function(response){
 

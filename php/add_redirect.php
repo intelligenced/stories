@@ -19,7 +19,7 @@
 		echo $choice_text;
 		echo $parent;
 	
- 		$queryz = "INSERT INTO choices(choice_text,choice_code,parent) VALUES(:choice_text,:choice_code,:parent)";
+ 		$queryz = "INSERT INTO choices(choice_text,choice_code,parent,redirect) VALUES(:choice_text,:choice_code,:parent,1)";
 		$sth   = $dbh->prepare($queryz);
 		$sth->execute(array(':choice_text' => $choice_text,':choice_code'=>$choice_code,':parent'=>$parent) )or die(print_r($dbh->errorInfo(), true));	
 
