@@ -2,14 +2,12 @@
 
 stories.controller('StoryAddCtrl',function($scope,$http,$sce){
         $scope.showSelectEnabled=true;
+        $scope.showExistingEnabled=false;
 
 
 
- $scope.addNewChoice = true;
- $scope.mango="";
+ $scope.addNewChoice = false;
 
-
- 
 
 
   $http.get("./php/get_choices.php").then(function(response){
