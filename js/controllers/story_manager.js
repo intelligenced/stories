@@ -2,7 +2,11 @@
 
 stories.controller('StoryAddCtrl',function($scope,$http,$sce){
         $scope.showSelectEnabled=true;
+        $scope.showExistingEnabled=false;
 
+
+
+ $scope.addNewChoice = false;
 
 
 
@@ -29,7 +33,68 @@ stories.controller('StoryAddCtrl',function($scope,$http,$sce){
 
 
 
-  })
+  });
+
+  $scope.getAllRedirects=function(){
+
+
+    $http.get("./php/get_redirects.php").then(function(response){
+      $scope.redirects=response.data;
+
+
+    });
+
+    }
+
+
+       $scope.getAllRedirects();
+
+  $scope.deleteRedirect=function(){
+    delete_redirect = $scope.redirects.selected.choice_id;
+   // console.log(delete_redirect);
+   // delete_redirect_link=
+     var redirect_link = './php/delete_redirect.php';
+    $http.post(redirect_link, {choice_id :delete_redirect}).then(function (res){
+        $scope.validation = res.data;
+        console.log($scope.validation);
+        $scope.refreshEverything();
+
+       });
+     $scope.getAllRedirects();
+
+
+
+  } 
+
+
+  $scope.addRedirect=function(){
+
+  console.log("you are inside the redirect");
+        parent=$scope.choices.selected.choice_code; 
+        redirect=$scope.choices.existing.choice_code;
+        redirect_text=$scope.add_redirect_choice;
+
+        console.log(parent);  
+        console.log(redirect);  
+        console.log(redirect_text);  
+
+        var redirect_link = './php/add_redirect.php';
+        $http.post(redirect_link, {parent :parent,choice_text:redirect_text,choice_code:redirect}).then(function (res){
+            $scope.validation = res.data;
+                console.log($scope.validation);
+                            $scope.refreshEverything();
+
+          });
+
+
+
+
+
+
+
+
+
+  }
 
   $scope.submit=function(){
     //console.log("I have been executed");
@@ -295,6 +360,9 @@ $scope.add_choice="";
   }
 
   $scope.refreshEverything=function(){
+
+           $scope.getAllRedirects();
+
 
   $http.get("./php/get_choices.php").then(function(response){
 

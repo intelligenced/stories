@@ -13,8 +13,11 @@
 
 
   <div class="button-bar">
+    <a class="button" ng-click="showSelect()">Select</a>
+      <a class="button" ng-click="showPublisher()">Add</a>
+
   <a class="button" ng-click="showEditor()">Edit</a>
-  <a class="button" ng-click="showPublisher()">Add</a>
+
 
 
 
@@ -26,13 +29,13 @@
 
 
  <form name="bananaform">
-   <div class="item item-divider" ng-click="showSelectEnabled=!showSelectEnabled">
-   Select Toggle <p>{{choices.selected.choice_text}}</p>
+   <div class="item item-divider">
+    <p>UNDER STORY : {{choices.selected.choice_text}}</p>
   </div>
 <div class="banana" ng-show=showSelectEnabled> <h4> Search </h4>
 <ui-select  ng-change=submit() ng-model="choices.selected">
     <ui-select-match placeholder="   Enter choice text...">{{$select.selected.choice_text}}</ui-select-match>
-    <ui-select-choices repeat="choice in choices.all | filter: $select.search track by choice.choice_code">
+    <ui-select-choices repeat="choice in choices.all | filter: $select.search track by choice.choice_id">
         <b>Choice Text</b>
         <div ng-bind-html="choice.choice_text | highlight: $select.search"></div>
     </ui-select-choices>
@@ -101,15 +104,45 @@
   <!--editor end -->
 
   <!--publisher begin -->
+<div ng-show=showPublisherEnabled>
+  <ion-toggle ng-model="addNewChoice" toggle-class="toggle-positive" ng-change="showExistingEnabled=!showExistingEnabled"> Redirect Choice</ion-toggle>
+   <label class="item item-input" ng-show=showExistingEnabled>
+    <input type="text" ng-model="$parent.add_redirect_choice" placeholder="Add Redirect Choice Text">
+  </label>
+
+
+
+       <label class="item item-input item-select" ng-show=showExistingEnabled>
+    <div class="input-label">
+      Redirect to Existing Choice
+    </div>
+      <select ng-model="choices.existing" ng-options="choice.choice_text for choice in choices.all" ng-change=submit()>
+        <option value="">Select a choice</option></select>
+
+  </label>
+
+   <button class="button button-block button-positive"  ng-show=showExistingEnabled ng-click="addRedirect()">
+  Add Redirect
+</button>
+
+</div>
+
 
  
    <label class="item item-input" ng-show=showPublisherEnabled>
     <input type="text" ng-model="$parent.add_choice" placeholder="Add Choice">
   </label>
+
+
+
+
   <label class="item item-input" ng-show=showPublisherEnabled>
     <textarea ng-model="$parent.add_story" placeholder="Story"></textarea>
   </label>
     <!--publisher end -->
+
+
+
 
   <button class="button button-block button-positive"  ng-show=showEditorEnabled ng-click=editStory()>
   Edit Changes
@@ -129,6 +162,17 @@
   Confirm Deletion
 </button>
 
+<!--redirector begins -->
+   <label class="item item-input item-select" ng-show=showEditorEnabled >
+    <div class="input-label">
+     <button class="button button-clear button-positive" ng-click="deleteRedirect()" >
+Delete    </div>
+      <select ng-model="redirects.selected" ng-options="redirect.choice_text for redirect in redirects">
+          <option value="">select redirect</option></select>
+
+  </label>
+
+  <!--redirector ends-->
        
 
 
