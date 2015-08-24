@@ -102,10 +102,34 @@
 
   <!--publisher begin -->
 
+  <ion-toggle ng-model="addNewChoice" toggle-class="toggle-positive" ng-change="testing123()"> New Choice</ion-toggle>
+<tt>{{addNewChoice}}</tt>
+
+
+   <label class="item item-input" ng-show=mango>
+    <input type="text" ng-model="$parent.add_redirect_choice" placeholder="Add Redirect Choice Text">
+  </label>
+
+
+
+       <label class="item item-input item-select" ng-show=mango>
+    <div class="input-label">
+      Redirect to Existing Choice
+    </div>
+      <select ng-model="choices.existing" ng-options="choice.choice_text for choice in choices.all" ng-change=submit()>
+        <option value="" ng-if="false"></option></select>
+
+  </label>
+
+
  
    <label class="item item-input" ng-show=showPublisherEnabled>
     <input type="text" ng-model="$parent.add_choice" placeholder="Add Choice">
   </label>
+
+
+
+
   <label class="item item-input" ng-show=showPublisherEnabled>
     <textarea ng-model="$parent.add_story" placeholder="Story"></textarea>
   </label>

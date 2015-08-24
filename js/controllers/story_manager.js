@@ -5,6 +5,12 @@ stories.controller('StoryAddCtrl',function($scope,$http,$sce){
 
 
 
+ $scope.addNewChoice = true;
+ $scope.mango="";
+
+
+ 
+
 
   $http.get("./php/get_choices.php").then(function(response){
 
