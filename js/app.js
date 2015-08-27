@@ -59,11 +59,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   }
 })
 
-.state('tab.add', {
-  url: '/add',
+.state('tab.manage', {
+  url: '/manage',
   views: {
-    'tab-add': {
-      templateUrl: 'templates/tab-add.html',
+    'tab-manage': {
+      templateUrl: 'templates/tab-manage.html',
       controller: 'StoryAddCtrl'
     }
   }
