@@ -8,7 +8,7 @@ stories.controller('StoryCtrl', function($scope,$http) {
           var link = './php/get_choices_from_story_choice_code.php';
           $http.post(link, {code :user_code}).then(function (res){
             $scope.legs = res.data;
-            console.log($scope.legs);
+            //console.log($scope.legs);
           });
           
       });

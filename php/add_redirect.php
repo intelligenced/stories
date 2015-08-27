@@ -13,8 +13,8 @@
 
 
 		if($choice_code==$parent){
-			echo "are you kidding me? ";
-		}else if($choice_code=="" || $parent=="" || $choice_text==""){ echo "type something,damn it";}else{
+			echo $message= "This does not make sense...at all";
+		}else if($choice_code=="" || $parent=="" || $choice_text==""){ echo $message= "type something,damn it";}else{
 
 		echo $choice_text;
 		echo $parent;
