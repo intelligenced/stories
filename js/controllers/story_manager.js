@@ -86,7 +86,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             }).then(function(res) {
                 $scope.validation = res.data;
                 console.log($scope.validation);
-                $scope.displayMessage("alert-success", "Redirect Added Successfully");
+                $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
                 $scope.refreshEverything();
 
             });
