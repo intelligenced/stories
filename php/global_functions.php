@@ -1,7 +1,7 @@
 
 
 <?php
-function DisplayError($type,$message){
+function DisplayMessage($type,$message){
 
 
 //alert-success
