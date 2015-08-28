@@ -252,11 +252,11 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
     $scope.postStory = function() {
 
-       if (angular.isUndefined($scope.add_choice)) {
+       if (angular.isUndefined($scope.add_choice)||$scope.add_choice=="") {
          $scope.displayMessage("alert-warning", "Still searching for a choice... ");
 
 
-       }else if (angular.isUndefined($scope.add_story)){
+       }else if (angular.isUndefined($scope.add_story)||$scope.add_story==""){
                  $scope.displayMessage("alert-warning", "A choice without a story? ");
 
 
