@@ -77,7 +77,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
         parent = $scope.choices.selected.choice_code;
         if (angular.isUndefined($scope.choices.existing) || angular.isUndefined($scope.add_redirect_choice)) {
 
-            $scope.displayMessage("alert-danger", "Are you kidding me?..Blank Field,Hello!");
+            $scope.displayMessage("alert-warning", "Are you kidding me?..Blank Field,Hello!");
 
         } else {
 
@@ -215,6 +215,18 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
         choice_text = $scope.choices.selected.choice_text;
         updated_story = $scope.story;
 
+     if ($scope.choices.selected.choice_text=="") {
+               $scope.displayMessage("alert-warning", "blank choice...? ");
+
+
+     }else if($scope.story==""){
+               $scope.displayMessage("alert-warning", "blank story?");
+
+
+
+     }else{
+
+
 
 
         var update_story = './php/update_story.php';
@@ -224,12 +236,14 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                 story: updated_story
             })
             .then(function(res) {
-                $scope.message = res.data;
-                //   $scope.refreshEverything();
-
-
-                console.log($scope.message);
+         $scope.validation = res.data;
+                console.log($scope.validation);
+                $scope.refreshEverything();
+                $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
             });
+
+
+            }
 
 
 
