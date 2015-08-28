@@ -180,6 +180,11 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
     }
 
     $scope.deleteStory = function() {
+
+
+        if (angular.isUndefined($scope.choices.selected)) {
+            $scope.displayMessage("alert-warning", "Nothing cannot be deleted...maybe? ");}else{
+
         choice_code = $scope.choices.selected.choice_code;
 
         console.log(choice_code);
@@ -191,35 +196,14 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                 choice_code: choice_code
             })
             .then(function(res) {
-                $scope.message = res.data;
-                console.log($scope.message);
+                $scope.validation = res.data;
+                //console.log($scope.validation);
+                $scope.refreshEverything();
+                $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
             });
 
 
-        $http.get("./php/get_choices.php").then(function(response) {
-
-
-            $scope.choices = {
-                all: response.data,
-                selected: response.data[0]
-            };
-            //console.log($scope.choices.all);
-            //console.log(response.data[0].choice_parent[0]);
-            $scope.choices.myselected = response.data[0].choice_parent[0];
-            user_code = response.data[0].choice_code;
-            var get_story = './php/get_story_from_choice_code.php';
-            $http.post(get_story, {
-                code: user_code
-            }).then(function(res) {
-                $scope.story = res.data[0].story;
-                //console.log($scope.story);
-            });
-
-
-
-
-
-        });
+        }
 
 
 
@@ -253,6 +237,18 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
 
     $scope.postStory = function() {
+
+       if (angular.isUndefined($scope.add_choice)) {
+         $scope.displayMessage("alert-warning", "Still searching for a choice... ");
+
+
+       }else if (angular.isUndefined($scope.add_story)){
+                 $scope.displayMessage("alert-warning", "A choice without a story? ");
+
+
+       }else{
+
+
         parent = $scope.choices.selected.choice_code;
         choice_text = $scope.add_choice;
         story = $scope.add_story;
@@ -271,10 +267,10 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                 story: story
             })
             .then(function(res) {
-                $scope.message = res.data;
-                console.log($scope.message);
-
+                $scope.validation = res.data;
+                console.log($scope.validation);
                 $scope.refreshEverything();
+                $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
 
 
 
@@ -301,6 +297,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
         $scope.add_choice = "";
         $scope.add_story = "";
+        }
 
 
 
