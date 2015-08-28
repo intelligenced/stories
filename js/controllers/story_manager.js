@@ -43,27 +43,36 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
     //Delete a redirect
     $scope.deleteRedirect = function() {
-        delete_redirect = $scope.redirects.selected.choice_id;
-        // console.log(delete_redirect);
-        // delete_redirect_link=
-        var redirect_link = './php/delete_redirect.php';
-        $http.post(redirect_link, {
-            choice_id: delete_redirect
-        }).then(function(res) {
-            $scope.validation = res.data;
-            console.log($scope.validation);
-            $scope.refreshEverything();
 
-        });
-        $scope.getAllRedirects();
+        if (angular.isUndefined($scope.redirects.selected)) {
+            $scope.displayMessage("alert-warning", "select redirect is not exactly a choice, now is it? ");
+
+
+        } else {
+            delete_redirect = $scope.redirects.selected.choice_id;
+            // console.log(delete_redirect);
+            // delete_redirect_link=
+            var redirect_link = './php/delete_redirect.php';
+            $http.post(redirect_link, {
+                choice_id: delete_redirect
+            }).then(function(res) {
+                $scope.validation = res.data;
+                console.log($scope.validation);
+                $scope.refreshEverything();
+                $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
+
+            });
+            $scope.getAllRedirects();
+
+        }
 
     }
 
     //Add a redirect
     $scope.addRedirect = function() {
 
-        console.log("you are inside the redirect");
-        console.log("I am executed");
+        //  console.log("you are inside the redirect");
+        // console.log("I am executed");
 
         parent = $scope.choices.selected.choice_code;
         if (angular.isUndefined($scope.choices.existing) || angular.isUndefined($scope.add_redirect_choice)) {
@@ -74,9 +83,9 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
             redirect = $scope.choices.existing.choice_code;
             redirect_text = $scope.add_redirect_choice;
-            console.log(parent);
-            console.log(redirect);
-            console.log(redirect_text);
+            // console.log(parent);
+            // console.log(redirect);
+            // console.log(redirect_text);
 
             var redirect_link = './php/add_redirect.php';
             $http.post(redirect_link, {
@@ -85,7 +94,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                 choice_code: redirect
             }).then(function(res) {
                 $scope.validation = res.data;
-                console.log($scope.validation);
+                // console.log($scope.validation);
                 $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
                 $scope.refreshEverything();
 

@@ -12,7 +12,7 @@ function DisplayMessage($type,$message){
 
 	if($type=="0"){
 		$alerttype="alert-success";
-	}else if($type=="2"){
+	}else if($type=="1"){
 		$alerttype="alert-warning";
 	}else{
 		$alerttype="alert-danger";
