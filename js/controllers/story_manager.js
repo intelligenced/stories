@@ -77,7 +77,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
         parent = $scope.choices.selected.choice_code;
         if (angular.isUndefined($scope.choices.existing) || angular.isUndefined($scope.add_redirect_choice)) {
 
-            $scope.displayMessage("alert-warning", "Are you kidding me?..Blank Field,Hello!");
+            $scope.displayMessage("alert-warning", "Filling the blanks would be a good idea ");
 
         } else {
 
