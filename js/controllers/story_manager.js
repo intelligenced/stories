@@ -10,8 +10,8 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             all: response.data,
             selected: response.data[0]
         };
-        console.log($scope.choices.all);
-        //console.log(response.data[0].choice_parent[0]);
+        //console.log($scope.choices.all);
+        ////console.log(response.data[0].choice_parent[0]);
         $scope.choices.myselected = response.data[0].choice_parent[0];
         user_code = response.data[0].choice_code;
         user_text = response.data[0].choice_text;
@@ -23,7 +23,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             code: user_code
         }).then(function(res) {
             $scope.story = res.data[0].story;
-            //console.log($scope.story);
+            ////console.log($scope.story);
         });
 
     });
@@ -50,14 +50,14 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
         } else {
             delete_redirect = $scope.redirects.selected.choice_id;
-            // console.log(delete_redirect);
+            // //console.log(delete_redirect);
             // delete_redirect_link=
             var redirect_link = './php/delete_redirect.php';
             $http.post(redirect_link, {
                 choice_id: delete_redirect
             }).then(function(res) {
                 $scope.validation = res.data;
-                console.log($scope.validation);
+                //console.log($scope.validation);
                 $scope.refreshEverything();
                 $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
 
@@ -71,8 +71,8 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
     //Add a redirect
     $scope.addRedirect = function() {
 
-        //  console.log("you are inside the redirect");
-        // console.log("I am executed");
+        //  //console.log("you are inside the redirect");
+        // //console.log("I am executed");
 
         parent = $scope.choices.selected.choice_code;
         if (angular.isUndefined($scope.choices.existing) || angular.isUndefined($scope.add_redirect_choice)) {
@@ -83,9 +83,9 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
             redirect = $scope.choices.existing.choice_code;
             redirect_text = $scope.add_redirect_choice;
-            // console.log(parent);
-            // console.log(redirect);
-            // console.log(redirect_text);
+            // //console.log(parent);
+            // //console.log(redirect);
+            // //console.log(redirect_text);
 
             var redirect_link = './php/add_redirect.php';
             $http.post(redirect_link, {
@@ -94,7 +94,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                 choice_code: redirect
             }).then(function(res) {
                 $scope.validation = res.data;
-                // console.log($scope.validation);
+                // //console.log($scope.validation);
                 $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
                 $scope.refreshEverything();
 
@@ -119,13 +119,13 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
     }
 
     $scope.submit = function() {
-        //console.log("I have been executed");
-        //console.log($scope.choices.selected.choice_code)
+        ////console.log("I have been executed");
+        ////console.log($scope.choices.selected.choice_code)
 
 
 
 
-        //console.log(baan);
+        ////console.log(baan);
 
 
         user_code = $scope.choices.selected.choice_code;
@@ -136,7 +136,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             $scope.story = res.data[0].story;
 
             $scope.renderStory($scope.story);
-            //console.log($scope.story);
+            ////console.log($scope.story);
         });
 
         var get_num_choices_from_choice_code = './php/get_num_choices_from_choice_code.php';
@@ -147,10 +147,10 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             if ($scope.have_choices == "") {
                 $scope.num_of_choices = '';
             } else {
-                //  console.log("LETS TEST IT OUT");
+                //  //console.log("LETS TEST IT OUT");
 
                 $scope.num_of_choices = Object.keys($scope.have_choices).length;
-                // console.log($scope.have_choices);
+                // //console.log($scope.have_choices);
 
 
 
@@ -166,8 +166,8 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             code: user_code
         }).then(function(res) {
             $scope.have_parents = res.data;
-            //console.log($scope.have_parents);
-            //console.log($scope.story);
+            ////console.log($scope.have_parents);
+            ////console.log($scope.story);
         });
 
 
@@ -187,7 +187,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
         choice_code = $scope.choices.selected.choice_code;
 
-        console.log(choice_code);
+        //console.log(choice_code);
 
         $scope.showDeleterEnabled = false;
 
@@ -197,7 +197,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             })
             .then(function(res) {
                 $scope.validation = res.data;
-                //console.log($scope.validation);
+                ////console.log($scope.validation);
                 $scope.refreshEverything();
                 $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
             });
@@ -237,7 +237,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             })
             .then(function(res) {
          $scope.validation = res.data;
-                console.log($scope.validation);
+                //console.log($scope.validation);
                 $scope.refreshEverything();
                 $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
             });
@@ -267,9 +267,9 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
         choice_text = $scope.add_choice;
         story = $scope.add_story;
 
-        console.log(choice_text);
-        console.log(story);
-        console.log(parent);
+        //console.log(choice_text);
+        //console.log(story);
+        //console.log(parent);
 
 
 
@@ -282,7 +282,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
             })
             .then(function(res) {
                 $scope.validation = res.data;
-                console.log($scope.validation);
+                //console.log($scope.validation);
                 $scope.refreshEverything();
                 $scope.displayMessage($scope.validation[0].alerttype, $scope.validation[0].message);
 
@@ -321,37 +321,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
     $scope.subchoiceSelected = function(param) {
 
         var bam = param;
-        console.log(bam);
-        //var test = $scope.choices.all[2];
-        var test = $scope.choices.all;
-
-        for (var key in test) {
-            if (test.hasOwnProperty(key)) {
-                if (test[key].choice_text == bam) {
-
-                    $scope.choices.selected = test[key];
-                    $scope.submit();
-
-
-                };
-            }
-        }
-
-
-
-
-
-        console.log(test);
-        console.log($scope.choices.selected.choice_text);
-        console.log($scope.have_choices.choice_text);
-
-
-    }
-
-    $scope.grandParentsSelected = function(param) {
-
-        var bam = param;
-        console.log(bam);
+        //console.log(bam);
         //var test = $scope.choices.all[2];
         var test = $scope.choices.all;
 
@@ -372,8 +342,38 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
 
         //console.log(test);
-        // console.log($scope.choices.selected.choice_text);
-        //  console.log($scope.have_choices.choice_text);
+        //console.log($scope.choices.selected.choice_text);
+        //console.log($scope.have_choices.choice_text);
+
+
+    }
+
+    $scope.grandParentsSelected = function(param) {
+
+        var bam = param;
+        //console.log(bam);
+        //var test = $scope.choices.all[2];
+        var test = $scope.choices.all;
+
+        for (var key in test) {
+            if (test.hasOwnProperty(key)) {
+                if (test[key].choice_text == bam) {
+
+                    $scope.choices.selected = test[key];
+                    $scope.submit();
+
+
+                };
+            }
+        }
+
+
+
+
+
+        ////console.log(test);
+        // //console.log($scope.choices.selected.choice_text);
+        //  //console.log($scope.have_choices.choice_text);
 
 
     }
@@ -381,7 +381,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
     $scope.hideMessage = function() {
         $timeout(function() {
             $scope.showMessage = "";
-            console.log("timeout occured");
+            //console.log("timeout occured");
         }, 3000);
 
 
@@ -414,7 +414,14 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
     }
 
     $scope.showDeleter = function() {
-        $scope.showDeleterEnabled = !$scope.showDeleterEnabled;
+       // $scope.showDeleterEnabled = !$scope.showDeleterEnabled;
+
+       $scope.showDeleterEnabled=true;
+
+             $timeout(function() {
+            $scope.showDeleterEnabled =false;
+            ////console.log("timeout occured");
+        }, 1000);
 
 
 
@@ -442,8 +449,8 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
 
 
 
-            //console.log($scope.choices.all);
-            //console.log(response.data[0].choice_parent[0]);
+            ////console.log($scope.choices.all);
+            ////console.log(response.data[0].choice_parent[0]);
             $scope.choices.myselected = response.data[0].choice_parent[0];
             user_code = response.data[0].choice_code;
             var get_story = './php/get_story_from_choice_code.php';
@@ -454,7 +461,7 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                 $scope.renderStory($scope.story);
 
 
-                //console.log($scope.story);
+                ////console.log($scope.story);
 
                 var get_num_choices_from_choice_code = './php/get_num_choices_from_choice_code.php';
                 $http.post(get_num_choices_from_choice_code, {
@@ -464,10 +471,10 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                     if ($scope.have_choices == "") {
                         $scope.num_of_choices = '';
                     } else {
-                        //  console.log("LETS TEST IT OUT");
+                        //  //console.log("LETS TEST IT OUT");
 
                         $scope.num_of_choices = Object.keys($scope.have_choices).length;
-                        // console.log($scope.have_choices);
+                        // //console.log($scope.have_choices);
 
 
 
@@ -484,8 +491,8 @@ stories.controller('StoryAddCtrl', function($scope, $http, $sce, $timeout) {
                     code: user_code
                 }).then(function(res) {
                     $scope.have_parents = res.data;
-                    //console.log($scope.have_parents);
-                    //console.log($scope.story);
+                    ////console.log($scope.have_parents);
+                    ////console.log($scope.story);
                 });
 
 
